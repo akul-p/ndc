@@ -1,0 +1,27 @@
+=========================================================================================================
+XTABLES
+=========================================================================================================
+
+install xz-utils gcc libc6-dev pkg-config make automake iptables-dev linux-headers-4.19.0-5-amd64 libtext-csv-xs-perl libnet-cider-lite-perl unzip wget -y
+cd /tmp
+wget <link>
+tar -xf xtables-addon---.xz
+cd /tmp/xtables---
+./configure
+make
+make install 
+ls -l /usr/local/libexec/xtables-addons
+(2 files)
+mkdir xtables
+nano /usr/local/libexec/xtables-addons/xt_geoip_dl
+wget <change link>
+unzip <change file>
+rm -f <change file>
+
+/usr/local/libexec/xtables-addons/xt_geoip_dl
+mkdir /usr/share/xt_geoip
+/usr/local/libexec/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip
+depmod -a
+iptables -m geoip -h
+iptables -A INPUT -m geoip --src-c CN -j LOG --log-level debug --log-prefix "|anything|"
+

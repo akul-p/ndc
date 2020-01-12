@@ -1,0 +1,25 @@
+=========================================================================================================
+BASE (Front end for Snort)
+=========================================================================================================
+apt install apache2 php5 p7zip libapache2-mod-php5 php5-mcrypt php5-mysqlnd libphp-adodb unzip -y
+(note down the path)
+cd tmp
+wget <...snortbase.tar.gz>
+tar -zxf snort_base...
+mv base... /var/www/html/base
+chown -R www-data:www-data /var/www/html/base
+nano /etc/php5/apache2/php.in
+	error_reporting = E_ALL & ~E_NOTICE                    (449)
+systemctl restart apache2
+nano /etc/mysql/mariadb.conf.d/50-server.cnf
+	bind address	= 0.0.0.0
+systemctl restart mariadb 
+(in mariadb user)
+>GRANT, CREATE , INSERT , SELECT ,DELETE,UPDATE ON snort.* To 'snort'@'<deb8 ip>' IDENTIFIED BY 'toor'
+systemctl restart mariadb
+
+[deb 8]
+apt install mariadb-client
+mysql -usnort -p'toor' -h192.168.deb10.ip
+
+browser <IP>/base
